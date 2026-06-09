@@ -27,13 +27,23 @@ public class ModelController : MonoBehaviour
         }
     }
 
-    public void ChangeColor(Color newColor)
+    public void ChangeColor(string colorName)
     {
+        Color newColor = Color.white; 
+
+        switch (colorName.ToLower())
+        {
+            case "blue": newColor = Color.blue; break;
+            case "red": newColor = Color.red; break;
+            case "green": newColor = Color.green; break;
+            case "yellow": newColor = Color.yellow; break;
+        }
+
         if (modelRenderer != null)
         {
-            foreach(Material mat in modelRenderer.materials)
+            foreach (Material mat in modelRenderer.materials)
             {
-               mat.color = newColor;
+                mat.color = newColor;
             }
         }
     }
@@ -45,6 +55,6 @@ public class ModelController : MonoBehaviour
     private void TestRotation() => RotateModel(45f);
 
     [ContextMenu("Test: Turn Blue")]
-    private void TestColor() => ChangeColor(Color.blue);
+    private void TestColor() => ChangeColor("blue");
 
 }
